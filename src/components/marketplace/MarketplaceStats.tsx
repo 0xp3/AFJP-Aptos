@@ -26,7 +26,7 @@ export const MarketplaceStats: React.FC<MarketplaceStatsProps> = ({ tokenPrice, 
                 {tokenChange >= 0 ? '+' : ''}{tokenChange}% (24h)
               </p>
             </div>
-            <div className="h-12 w-12 rounded-full bg-polkadot-gradient flex items-center justify-center">
+            <div className="h-12 w-12 rounded-full bg-AFJPCripto-gradient flex items-center justify-center">
               <TrendingUpIcon className="h-6 w-6 text-white" />
             </div>
           </div>
@@ -41,7 +41,7 @@ export const MarketplaceStats: React.FC<MarketplaceStatsProps> = ({ tokenPrice, 
               <p className="text-2xl font-bold">{volume24h.toLocaleString()}</p>
               <p className="text-sm text-foreground/70">Tokens</p>
             </div>
-            <div className="h-12 w-12 rounded-full bg-polkadot-gradient flex items-center justify-center">
+            <div className="h-12 w-12 rounded-full bg-AFJPCripto-gradient flex items-center justify-center">
               <CoinsIcon className="h-6 w-6 text-white" />
             </div>
           </div>
@@ -56,7 +56,7 @@ export const MarketplaceStats: React.FC<MarketplaceStatsProps> = ({ tokenPrice, 
               <p className="text-2xl font-bold">{holders.toLocaleString()}</p>
               <p className="text-sm text-foreground/70">Usuarios</p>
             </div>
-            <div className="h-12 w-12 rounded-full bg-polkadot-gradient flex items-center justify-center">
+            <div className="h-12 w-12 rounded-full bg-AFJPCripto-gradient flex items-center justify-center">
               <UsersIcon className="h-6 w-6 text-white" />
             </div>
           </div>
