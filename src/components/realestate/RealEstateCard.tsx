@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { BuildingIcon, MapPinIcon, CalendarIcon, PercentIcon } from 'lucide-react';
+import { BuildingIcon, MapPinIcon, CalendarIcon, PercentIcon, CoinsIcon } from 'lucide-react';
 
 interface RealEstateProject {
   id: number;
@@ -16,6 +16,8 @@ interface RealEstateProject {
   discount: number;
   rentalYield: number;
   images: string[];
+  rentalPriceJuventud?: number;
+  purchasePriceLadrillo?: number;
 }
 
 interface RealEstateCardProps {
@@ -70,7 +72,7 @@ const RealEstateCard: React.FC<RealEstateCardProps> = ({ project }) => {
         </div>
         {project.available && (
           <div className="absolute top-2 right-2">
-            <Badge className="bg-polkadot-gradient">Disponible</Badge>
+            <Badge className="bg-AFJPCripto-gradient">Disponible</Badge>
           </div>
         )}
       </div>
@@ -80,42 +82,75 @@ const RealEstateCard: React.FC<RealEstateCardProps> = ({ project }) => {
         
         <div className="space-y-2 mt-3">
           <div className="flex items-center text-sm text-foreground/70">
-            <MapPinIcon className="h-4 w-4 mr-2 text-polkadot-pink" />
+            <MapPinIcon className="h-4 w-4 mr-2 text-AFJPCripto-pink" />
             {project.location}
           </div>
           
           <div className="flex items-center text-sm text-foreground/70">
-            <BuildingIcon className="h-4 w-4 mr-2 text-polkadot-pink" />
+            <BuildingIcon className="h-4 w-4 mr-2 text-AFJPCripto-pink" />
             {project.type}
           </div>
           
           <div className="flex items-center text-sm text-foreground/70">
-            <CalendarIcon className="h-4 w-4 mr-2 text-polkadot-pink" />
+            <CalendarIcon className="h-4 w-4 mr-2 text-AFJPCripto-pink" />
             Finalización: {project.completion}
           </div>
           
           <div className="flex items-center text-sm text-foreground/70">
-            <PercentIcon className="h-4 w-4 mr-2 text-polkadot-pink" />
+            <PercentIcon className="h-4 w-4 mr-2 text-AFJPCripto-pink" />
             Rentabilidad estimada: {project.rentalYield}%
           </div>
         </div>
         
         {project.available && (
-          <div className="mt-4 p-2 bg-muted/30 rounded-md">
-            <p className="text-sm flex items-center">
-              <span className="font-medium text-polkadot-pink">Beneficio Afiliados:</span>
-              <span className="ml-2">{project.discount}% descuento en alquiler</span>
-            </p>
+          <div className="mt-4 space-y-2">
+            <div className="p-2 bg-muted/30 rounded-md">
+              <p className="text-sm flex items-center">
+                <span className="font-medium text-AFJPCripto-pink">Beneficio Afiliados:</span>
+                <span className="ml-2">{project.discount}% descuento en alquiler</span>
+              </p>
+            </div>
+            
+            {project.rentalPriceJuventud && (
+              <div className="p-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-md border border-blue-200/20">
+                <p className="text-sm flex items-center">
+                  <CoinsIcon className="h-4 w-4 mr-1 text-blue-500" />
+                  <span className="font-medium">Alquiler:</span>
+                  <span className="ml-2">{project.rentalPriceJuventud} JUVENTUD/mes</span>
+                </p>
+              </div>
+            )}
+            
+            {project.purchasePriceLadrillo && (
+              <div className="p-2 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-md border border-orange-200/20">
+                <p className="text-sm flex items-center">
+                  <CoinsIcon className="h-4 w-4 mr-1 text-orange-500" />
+                  <span className="font-medium">Compra:</span>
+                  <span className="ml-2">{project.purchasePriceLadrillo.toLocaleString()} LADRILLO</span>
+                </p>
+              </div>
+            )}
           </div>
         )}
       </CardContent>
       
-      <CardFooter className="p-4 pt-0 flex justify-between">
-        <Button variant="outline">Ver Detalles</Button>
+      <CardFooter className="p-4 pt-0 flex flex-col gap-2">
+        <Button variant="outline" className="w-full">Ver Detalles</Button>
         {project.available && (
-          <Button className="bg-polkadot-gradient hover:opacity-90">
-            {project.status === 'Completado' ? 'Alquilar' : 'Reservar'}
-          </Button>
+          <div className="flex gap-2 w-full">
+            {project.rentalPriceJuventud && (
+              <Button className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 hover:opacity-90">
+                <CoinsIcon className="h-4 w-4 mr-1" />
+                Alquilar
+              </Button>
+            )}
+            {project.purchasePriceLadrillo && (
+              <Button className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 hover:opacity-90">
+                <CoinsIcon className="h-4 w-4 mr-1" />
+                Comprar
+              </Button>
+            )}
+          </div>
         )}
       </CardFooter>
     </Card>

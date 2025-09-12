@@ -9,20 +9,23 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { toast } from '@/hooks/use-toast';
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: 'El nombre es requerido' }),
-  email: z.string().email({ message: 'Email inválido' }),
-  phone: z.string().min(8, { message: 'Teléfono inválido' }),
-  interest: z.enum(['alquiler', 'compra', 'informacion'], {
-    required_error: 'Por favor seleccione su interés',
-  }),
-  message: z.string().optional(),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const RealEstateInterestForm: React.FC = () => {
+  const { t } = useLanguage();
+  
+  const formSchema = z.object({
+    name: z.string().min(2, { message: t('form.name-required') }),
+    email: z.string().email({ message: t('form.invalid-email') }),
+    phone: z.string().min(8, { message: t('form.invalid-phone') }),
+    interest: z.enum(['alquiler', 'compra', 'informacion'], {
+      required_error: t('form.select-interest'),
+    }),
+    message: z.string().optional(),
+  });
+
+  type FormValues = z.infer<typeof formSchema>;
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,8 +39,8 @@ const RealEstateInterestForm: React.FC = () => {
 
   function onSubmit(values: FormValues) {
     toast({
-      title: 'Formulario enviado',
-      description: 'Nos pondremos en contacto contigo en breve.',
+      title: t('form.sent-title'),
+      description: t('form.sent-desc'),
     });
     form.reset();
   }
@@ -51,9 +54,9 @@ const RealEstateInterestForm: React.FC = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nombre completo</FormLabel>
+                <FormLabel>{t('form.full-name')}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Tu nombre" {...field} />
+                  <Input placeholder={t('form.your-name')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -65,7 +68,7 @@ const RealEstateInterestForm: React.FC = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t('form.email')}</FormLabel>
                 <FormControl>
                   <Input placeholder="tu@email.com" type="email" {...field} />
                 </FormControl>
@@ -80,7 +83,7 @@ const RealEstateInterestForm: React.FC = () => {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Teléfono</FormLabel>
+              <FormLabel>{t('form.phone')}</FormLabel>
               <FormControl>
                 <Input placeholder="+54 11 1234 5678" {...field} />
               </FormControl>
@@ -94,7 +97,7 @@ const RealEstateInterestForm: React.FC = () => {
           name="interest"
           render={({ field }) => (
             <FormItem className="space-y-3">
-              <FormLabel>Estoy interesado en</FormLabel>
+              <FormLabel>{t('form.interested-in')}</FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
@@ -104,19 +107,19 @@ const RealEstateInterestForm: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="alquiler" id="alquiler" />
                     <FormLabel htmlFor="alquiler" className="font-normal cursor-pointer">
-                      Alquilar una propiedad
+                      {t('form.rent-property')}
                     </FormLabel>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="compra" id="compra" />
                     <FormLabel htmlFor="compra" className="font-normal cursor-pointer">
-                      Comprar una propiedad
+                      {t('form.buy-property')}
                     </FormLabel>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="informacion" id="informacion" />
                     <FormLabel htmlFor="informacion" className="font-normal cursor-pointer">
-                      Recibir más información
+                      {t('form.receive-info')}
                     </FormLabel>
                   </div>
                 </RadioGroup>
@@ -131,10 +134,10 @@ const RealEstateInterestForm: React.FC = () => {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Mensaje adicional (opcional)</FormLabel>
+              <FormLabel>{t('form.additional-message')}</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Añade cualquier detalle adicional sobre tu interés..."
+                  placeholder={t('form.additional-placeholder')}
                   className="resize-none"
                   {...field}
                 />
@@ -144,8 +147,8 @@ const RealEstateInterestForm: React.FC = () => {
           )}
         />
         
-        <Button type="submit" className="bg-polkadot-gradient hover:opacity-90 w-full">
-          Enviar Solicitud
+        <Button type="submit" className="bg-AFJPCripto-gradient hover:opacity-90 w-full">
+          {t('form.send-request')}
         </Button>
       </form>
     </Form>
