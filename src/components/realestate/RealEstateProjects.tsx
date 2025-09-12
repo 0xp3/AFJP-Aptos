@@ -117,7 +117,7 @@ const RealEstateProjects: React.FC = () => {
       expectedReturn: 10.8,
       description: 'Complejo residencial especializado para adultos mayores con servicios médicos integrados.',
       images: [
-        'https://images.pexels.com/photos/1396045/pexels-photo-1396045.jpeg',
+        'https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg'
         'https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg'
       ]
     }
