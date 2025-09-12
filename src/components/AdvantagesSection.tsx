@@ -2,32 +2,35 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const AdvantagesSection: React.FC = () => {
+  const { t } = useLanguage();
+  
   const advantages = [
     {
-      title: "Parachain Dedicada para Jubilaciones",
-      description: "Posibilidad de crear una cadena dedicada exclusivamente a los tokens de jubilación, con reglas y características específicas."
+      title: t('advantages.dedicated-parachain'),
+      description: t('advantages.dedicated-desc')
     },
     {
-      title: "Integración con Activos Tokenizados",
-      description: "Fácil comunicación con parachains para la tokenización de inmuebles, permitiendo diversificación de inversiones."
+      title: t('advantages.tokenized-assets'),
+      description: t('advantages.tokenized-desc')
     },
     {
-      title: "Seguridad Institucional",
-      description: "Nivel de seguridad comparable a sistemas financieros tradicionales, generando confianza en los afiliados."
+      title: t('advantages.institutional-security'),
+      description: t('advantages.institutional-desc')
     },
     {
-      title: "Evolución Continua",
-      description: "Capacidad para implementar mejoras y actualizaciones sin interrumpir operaciones o comprometer fondos."
+      title: t('advantages.continuous-evolution'),
+      description: t('advantages.continuous-desc')
     },
     {
-      title: "Ecosistema DeFi Robusto",
-      description: "Acceso a un ecosistema completo de herramientas financieras descentralizadas para optimizar rendimientos."
+      title: t('advantages.defi-ecosystem'),
+      description: t('advantages.defi-desc')
     },
     {
-      title: "Resistencia a Largo Plazo",
-      description: "Infraestructura diseñada para sostenibilidad, ideal para instrumentos de ahorro de largo plazo."
+      title: t('advantages.long-term-resistance'),
+      description: t('advantages.long-term-desc')
     }
   ];
   
@@ -35,9 +38,9 @@ const AdvantagesSection: React.FC = () => {
     <section id="ventajas" className="py-20 bg-muted/50">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ventajas <span className="text-gradient">Competitivas</span></h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4"><span className="text-gradient">{t('advantages.title')}</span></h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            La infraestructura de Polkadot ofrece ventajas únicas para una AFJP Cripto moderna
+            {t('advantages.subtitle')}
           </p>
         </div>
         
@@ -45,7 +48,7 @@ const AdvantagesSection: React.FC = () => {
           {advantages.map((item, index) => (
             <Card key={index} className="glass-card p-6 border-border/50 hover:border-primary/50 transition-all">
               <div className="flex items-start gap-4">
-                <div className="mt-1 text-polkadot-pink">
+                <div className="mt-1 text-AFJPCripto-pink">
                   <CheckCircle size={20} />
                 </div>
                 <div>
