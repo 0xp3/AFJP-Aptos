@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { CoinsIcon, ArrowDownIcon, ArrowUpIcon } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 type Transaction = {
   id: number;
@@ -11,6 +12,8 @@ type Transaction = {
 };
 
 const TransactionsList: React.FC = () => {
+  const { t } = useLanguage();
+  
   // Mock transaction data
   const transactions: Transaction[] = [
     { id: 1, type: 'deposit', amount: 500, tokens: 4.2, date: '15 May 2023' },
@@ -24,35 +27,24 @@ const TransactionsList: React.FC = () => {
       case 'deposit':
         return <ArrowDownIcon className="h-4 w-4 text-green-500" />;
       case 'purchase':
-        return <CoinsIcon className="h-4 w-4 text-polkadot-pink" />;
+        return <CoinsIcon className="h-4 w-4 text-AFJPCripto-pink" />;
       case 'sale':
         return <ArrowUpIcon className="h-4 w-4 text-red-500" />;
       case 'reward':
-        return <CoinsIcon className="h-4 w-4 text-polkadot-purple" />;
+        return <CoinsIcon className="h-4 w-4 text-AFJPCripto-purple" />;
       default:
         return <CoinsIcon className="h-4 w-4" />;
     }
   };
 
   const getTransactionLabel = (type: Transaction['type']) => {
-    switch (type) {
-      case 'deposit':
-        return 'Aporte';
-      case 'purchase':
-        return 'Compra';
-      case 'sale':
-        return 'Venta';
-      case 'reward':
-        return 'Recompensa';
-      default:
-        return type;
-    }
+    return t(`transactions.${type}`);
   };
 
   return (
     <div className="space-y-4">
       {transactions.length === 0 ? (
-        <p className="text-center text-foreground/70 py-6">No hay transacciones recientes</p>
+        <p className="text-center text-foreground/70 py-6">{t('transactions.no-recent')}</p>
       ) : (
         transactions.map((tx) => (
           <div key={tx.id} className="flex items-center justify-between py-2 border-b border-border/30 last:border-0">
@@ -70,7 +62,7 @@ const TransactionsList: React.FC = () => {
                 {tx.type === 'sale' ? '-' : '+'}{tx.tokens.toFixed(2)} Tokens
               </p>
               <p className="text-sm text-foreground/70">
-                {tx.type === 'reward' ? 'Recompensa' : `$${tx.amount}`}
+                {tx.type === 'reward' ? t('transactions.reward') : `$${tx.amount}`}
               </p>
             </div>
           </div>
