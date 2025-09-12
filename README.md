@@ -129,7 +129,6 @@ AFJP Cripto presents an innovative model for a retirement system using blockchai
 - **6. Lending Contract** (`afjp_lending.move`)
 - **7. Inheritance Contract** (`afjp_inheritance.move`)
 - **8. Property Manager** (`property_manager.move`)
-- **8. Property Manager** (`property_manager.move`)
 - **9. Anti-Whale contract** (`anti-whale.move`)
 
 
@@ -271,4 +270,8 @@ AFJP Cripto presenta un modelo innovador de sistema de jubilación que utiliza t
 
 1. Clona el repositorio  
 2. Instala paquetes  
+   ```bash
+   npm install
+   # o
+   yarn install
 
