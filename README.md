@@ -1,5 +1,5 @@
 # AFJP Cripto ‒ Cryptocurrency-Based Retirement System
-
+[Jump to Spanish](#afjp-cripto--sistema-de-jubilacion-basado-en-criptomonedas)
 ## Introduction  
 AFJP Cripto presents an innovative model for a retirement system using blockchain technology, integrating retirement savings tokens, stock market investments, and opportunities in tokenized real estate. Each contribution generates **AFJP Tokens**, which represent retirement savings; these can be exchanged in a dedicated sub-market. The platform offers exclusive benefits for affiliates, such as access to tokenized real estate (RWA), options for early retirement, and a secure, flexible, and profitable retirement system managed through a virtual wallet.
 
